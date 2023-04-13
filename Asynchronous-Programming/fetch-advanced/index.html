@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch-Advanced</title>
+</head>
+<body>
+    <label for="person">Name:</label>
+    <input type="text" id="person">
+    <label for="phone">Phone:</label>
+    <input type="text" id="phone">
+    <button id="add-btn">Add</button>
+    <h3>Numbers</h3>
+    <ul id="list"></ul>
+    <button id="load-btn">Click</button>
+    <script>
+        let url = 'http://localhost:3030/jsonstore';
+        let person = document.getElementById('person');
+        let phone = document.getElementById('phone');
+        let addBtn = document.getElementById('add-btn');
+        let loadBtn = document.getElementById('load-btn');
+        let list = document.getElementById('list');
+
+        loadBtn.addEventListener('click', () => {
+            list.innerHTML = '';
+            fetch(`${url}/phonebook`)
+                .then(res => res.json())
+                .then(res => {
+                    for (const key in res) {
+                        let li = document.createElement('li');
+                        li.textContent = `${res[key].person} => ${res[key].phone}`; 
+                        
+                        list.appendChild(li);
+                    }
+                })
+                .catch(err => console.log(err));
+        });
+
+        addBtn.addEventListener('click', () => {
+            let name = person.value;
+            let phoneNumber = phone.value;
+            fetch(`${url}/phonebook`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({person: name, phone: phoneNumber})
+            })
+            .then(res => res.json())
+            .then(res => console.log(res))
+        });
+    </script>
+</body>
+</html>
