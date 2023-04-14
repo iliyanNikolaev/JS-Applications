@@ -5,14 +5,14 @@ function solve() {
     }
     
 
-    let container = document.getElementById('info');
+    let container = document.querySelector('#info span');
     let departBtn = document.getElementById('depart');
     let arriveBtn = document.getElementById('arrive');
 
     function depart() {
         let url = `http://localhost:3030/jsonstore/bus/schedule/${stop.next}`;
 
-        let response = fetch(url)
+        fetch(url)
             .then(response => response.json())
             .then(response => {
 
