@@ -34,9 +34,26 @@
             let username = formData.get('username');
             let password = formData.get('password');
 
-            console.log(username);
-            console.log(password);
+            let body = {
+                email: username,
+                password: password
+            }
 
+            fetch('http://localhost:3030/users/login', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            })
+                .then(res => res.json())
+                .then(user => {
+                    console.log(user);
+
+                    localStorage.setItem('token', user.accessToken);
+                    localStorage.setItem('_id', user._id);
+                    localStorage.setItem('username', user.username);
+                })
         });
     </script>
 </body>
