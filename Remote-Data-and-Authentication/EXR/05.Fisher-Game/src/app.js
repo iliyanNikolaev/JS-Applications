@@ -7,15 +7,55 @@ window.addEventListener('DOMContentLoaded', () => {
         userData = JSON.parse(userDataJSON);
         document.getElementById('guest').style.display = 'none';
         document.querySelector('#addForm .add').disabled = false;
-        document.querySelector('span').textContent = `${userData.username}`;
+        document.querySelector('span').textContent = `${userData.email}`;
+        document.getElementById('logout').addEventListener('click', () => {
+            sessionStorage.clear();
+            window.location = './index.html';
+        });
     } else {
         document.getElementById('user').style.display = 'none';
-        document.querySelector('span').textContent = 'Guest';
+        document.querySelector('span').textContent = 'guest';
     }
 
     document.querySelector('button[class="load"]').addEventListener('click', loadHandler);
     const form = document.getElementById('addForm').addEventListener('submit', createHandler);
+    document.getElementById('catches').addEventListener('click', catchHandler);
 })
+
+async function catchHandler(e){
+    if(e.target.className === 'delete'){
+        e.target.parentElement.remove();
+        await fetch(`http://localhost:3030/data/catches/${e.target.id}`, {
+            method: 'delete',
+            headers: { 'X-Authorization': `${userData.token}` }
+        });
+    } else if(e.target.className === 'update'){
+        const currCatch = e.target.parentElement;
+        const arr = Array.from(currCatch.querySelectorAll('input'));
+        const body = {};
+        arr.forEach(x => body[x.className] = x.value);
+        try {
+            for (const key in body) {
+                if(body[key] == ''){
+                    throw new Error('All fields must be filled!')
+                }
+            }
+            const response = await fetch(`http://localhost:3030/data/catches/${e.target.id}`, {
+            method: 'put',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Authorization': `${userData.token}`
+            },
+            body: JSON.stringify(body)
+        });
+        if(response.ok !== true){
+            throw new Error(response.message);
+        }
+        } catch (err) {
+            alert(err.message);
+        }
+    }
+}
 
 async function createHandler(e){
     e.preventDefault();
@@ -87,8 +127,8 @@ function renderEl(x){
         <input type="text" class="bait" value="${x.bait}"  ${!isOwner ? 'disabled': ''}>
         <label>Capture Time</label>
         <input type="number" class="captureTime" value="${x.captureTime}"  ${!isOwner ? 'disabled': ''}>
-        <button class="update" data-id="${x._id}"  ${!isOwner ? 'disabled': ''}>Update</button>
-        <button class="delete" data-id="${x._id}"  ${!isOwner ? 'disabled': ''}>Delete</button>`
+        <button class="update" id="${x._id}"  ${!isOwner ? 'disabled': ''}>Update</button>
+        <button class="delete" id="${x._id}"  ${!isOwner ? 'disabled': ''}>Delete</button>`
 
     return el;
 }
