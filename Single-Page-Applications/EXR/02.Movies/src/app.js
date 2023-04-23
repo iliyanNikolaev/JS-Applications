@@ -2,6 +2,7 @@ import { viewHomePage } from "./home.js";
 import { viewLoginPage } from "./login.js";
 import { viewRegisterPage } from "./register.js";
 
+hideAll();
 viewHomePage();
 
 document.getElementById('navigation').addEventListener('click', onNavigate);
@@ -16,7 +17,7 @@ function onNavigate(e){
             const path = url.pathname;
 
             const renderer = routes[path];
-
+            hideAll();
             renderer();
         }
     }
@@ -36,6 +37,7 @@ export function  hideAll(){
 }
 
 function onLogout(){
+    sessionStorage.clear();
     viewHomePage();
     alert('successful logout')
 }

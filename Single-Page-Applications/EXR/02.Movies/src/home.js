@@ -1,16 +1,15 @@
-import { hideAll } from "./app.js";
-
 const homePage = document.getElementById('home-page');
 const container = document.querySelector('.card-deck.d-flex.justify-content-center');
 
 export function viewHomePage(){
-    hideAll();
+
     homePage.style.display = 'block';
 
     renderMovies();
 }
 
 async function renderMovies(){
+    container.innerHTML = '';
     const fragment = document.createDocumentFragment();
     const data = await getMovies();
     data.forEach(m => {
