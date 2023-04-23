@@ -40,11 +40,3 @@
     box-shadow: 0 5px 10px #cccccc;
 }
 
-#home-page,
-#add-movie,
-#movie-example,
-#edit-movie,
-#form-login,
-#form-sign-up{
-    display: none;
-}
