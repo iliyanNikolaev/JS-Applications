@@ -44,9 +44,8 @@ async function onRegister(e){
             const data = await response.json();
 
             sessionStorage.setItem('userData', JSON.stringify(data));
-            const views = document.querySelectorAll('.view-section');
-            views.forEach(v => v.style.display = 'none');
             
+            registerPage.style.display = 'none';
             viewHomePage();
         } catch (err) {
             alert(err.message);

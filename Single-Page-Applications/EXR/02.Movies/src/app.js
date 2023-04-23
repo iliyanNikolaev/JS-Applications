@@ -1,11 +1,13 @@
 import { viewHomePage } from "./home.js";
 import { viewLoginPage } from "./login.js";
 import { viewRegisterPage } from "./register.js";
+import { viewAddPage } from "./addMovie.js";
 
 hideAll();
 viewHomePage();
 
 document.getElementById('navigation').addEventListener('click', onNavigate);
+document.querySelector('.btn.btn-warning ').addEventListener('click', viewAddPage);
 
 function onNavigate(e){
     if(e.target.tagName === 'A'){

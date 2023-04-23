@@ -1,7 +1,9 @@
 const homePage = document.getElementById('home-page');
 const container = document.querySelector('.card-deck.d-flex.justify-content-center');
 const navigation = document.getElementById('navigation');
-const welcomeMessage = document.querySelector('span')
+const welcomeMessage = document.querySelector('span');
+const addMovieBtn = document.querySelector('.btn.btn-warning ');
+
 
 export function viewHomePage() {
 
@@ -14,10 +16,11 @@ export function viewHomePage() {
     if (userData === undefined) {
         guestNav.forEach(x => x.style.display = 'inline-block');
         userNav.forEach(x => x.style.display = 'none');
+        addMovieBtn.style.display = 'none';
     } else {
         guestNav.forEach(x => x.style.display = 'none');
         userNav.forEach(x => x.style.display = 'inline-block');
-
+        addMovieBtn.style.display = 'inline-block';
         const parsedUserData = JSON.parse(userData);
         welcomeMessage.textContent = parsedUserData.email;
     }
@@ -64,3 +67,5 @@ alt="Card image cap" width="400">
     `
     return div;
 }
+
+window.getMovies = getMovies;

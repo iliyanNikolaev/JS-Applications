@@ -39,10 +39,9 @@ async function onLogin(e){
         const data = await response.json();
         sessionStorage.setItem('userData', JSON.stringify(data));
 
-        const views = document.querySelectorAll('.view-section');
-        views.forEach(v => v.style.display = 'none');
+        loginPage.style.display = 'none';
         viewHomePage();
-        
+
     } catch (error) {
         alert(error.message);
     }
