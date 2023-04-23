@@ -1,6 +1,6 @@
-const homePage = document.getElementById('home-page');
-const loginPage = document.getElementById('login-page');
-const registerPage = document.getElementById('register-page');
+import { viewHomePage } from "./home.js";
+import { viewLoginPage } from "./login.js";
+import { viewRegisterPage } from "./register.js";
 
 viewHomePage();
 
@@ -29,25 +29,10 @@ const routes = {
     '/logout': onLogout,
 }
 
-function  hideAll(){
+export function  hideAll(){
     const views = document.querySelectorAll('.view-section');
 
     views.forEach(v => v.style.display = 'none');
-}
-
-function viewHomePage(){
-    hideAll();
-    homePage.style.display = 'block';
-}
-
-function viewLoginPage(){
-    hideAll();
-    loginPage.style.display = 'block';
-}
-
-function viewRegisterPage(){
-    hideAll();
-    registerPage.style.display = 'block';
 }
 
 function onLogout(){
