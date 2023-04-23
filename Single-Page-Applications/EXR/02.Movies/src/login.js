@@ -36,17 +36,13 @@ async function onLogin(e){
             throw new Error(error.message);
         }
     
-        const dataFromServer = await response.json();
-        const userData = {
-            email: dataFromServer.email,
-            username: dataFromServer.username,
-            id: dataFromServer._id,
-            token: dataFromServer.accessToken
-        };
+        const data = await response.json();
+        sessionStorage.setItem('userData', JSON.stringify(data));
+
         const views = document.querySelectorAll('.view-section');
         views.forEach(v => v.style.display = 'none');
-        sessionStorage.setItem('userData', JSON.stringify(userData));
         viewHomePage();
+        
     } catch (error) {
         alert(error.message);
     }
