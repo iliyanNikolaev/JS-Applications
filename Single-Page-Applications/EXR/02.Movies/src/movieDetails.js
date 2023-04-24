@@ -1,11 +1,16 @@
 const detailsPage = document.getElementById('movie-example');
 const homePage = document.getElementById('home-page');
+let userData = '';
 
 export async function viewDetailsPage(e){
     if(e.target.tagName === 'BUTTON'){
+        if(sessionStorage.userData){
+            userData = JSON.parse(sessionStorage.userData);
+        }
+
         const _id = e.target.getAttribute('data-id');
         const movieData = await getMovieDetails(_id);
-        const content = createMovieCard(movieData);
+        const content = createMovieCard(movieData, userData);
 
         homePage.style.display = 'none';
         detailsPage.innerHTML = '';
@@ -30,7 +35,7 @@ async function getMovieDetails(id){
     }
 }
 
-function createMovieCard(movieData){
+function createMovieCard(movieData, userData){
     const div = document.createElement('div');
     div.className = 'container';
 
@@ -46,14 +51,24 @@ function createMovieCard(movieData){
         <div class="col-md-4 text-center">
         <h3 class="my-3 ">Movie Description</h3>
         <p>${movieData.description}</p>
-        <a class="btn btn-danger" href="#">Delete</a>
-        <a class="btn btn-warning" href="#">Edit</a>
-        <a class="btn btn-primary" href="#">Like</a>
-        <span class="enrolled-span">Liked 1</span>
+        ${createBtns(movieData, userData)}
         </div>
         </div>
         </div>
     `
-
+//       <span class="enrolled-span">Liked 1</span>
     return div;
+}
+
+function createBtns(movieData, userData){
+    let result = '';
+    if(userData === ''){
+        return '';
+    } else if(userData._id === movieData._ownerId){
+        result = `<a class="btn btn-danger" href="#">Delete</a><a class="btn btn-warning" href="#">Edit</a>`;
+    } else {
+        result = `<a class="btn btn-primary" href="#">Like</a>`;
+    }
+
+    return result;
 }
