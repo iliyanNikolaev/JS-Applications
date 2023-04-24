@@ -1,4 +1,5 @@
 import { viewHomePage } from "./home.js";
+import { viewEditPage } from "./editMovie.js";
 const detailsPage = document.getElementById('movie-example');
 const homePage = document.getElementById('home-page');
 let userData = '';
@@ -60,9 +61,10 @@ function createMovieCard(movieData, userData) {
     //       <span class="enrolled-span">Liked 1</span>
 
     if (userData._id === movieData._ownerId) {
-        div.querySelector('.btn.btn-danger').addEventListener('click', onDelete)
+        div.querySelector('.btn.btn-danger').addEventListener('click', onDelete);
+        div.querySelector('.btn.btn-warning').addEventListener('click', viewEditPage);
     } else {
-        
+        //todo... like movie
     }
 
     return div;
@@ -73,7 +75,7 @@ function createBtns(movieData, userData) {
     if (userData === '') {
         return '';
     } else if (userData._id === movieData._ownerId) {
-        result = `<a data-id = "${movieData._id}" class="btn btn-danger" href="#">Delete</a><a data-id = "${movieData._id}" class="btn btn-warning" href="#">Edit</a>`;
+        result = `<a data-id = "${movieData._id}" class="btn btn-danger" href="#">Delete</a><a data-idEdit = "${movieData._id}" class="btn btn-warning" href="#">Edit</a>`;
     } else {
         result = `<a class="btn btn-primary" href="#">Like</a>`;
     }

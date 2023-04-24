@@ -44,6 +44,7 @@ async function onAddMovie(e){
             }
 
             addMoviePage.style.display = 'none';
+            e.target.reset();
             viewHomePage();
         } catch (err) {
             alert(err.message);
