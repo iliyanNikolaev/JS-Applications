@@ -1,10 +1,11 @@
+import { viewHomePage } from "./home.js";
 const detailsPage = document.getElementById('movie-example');
 const homePage = document.getElementById('home-page');
 let userData = '';
 
-export async function viewDetailsPage(e){
-    if(e.target.tagName === 'BUTTON'){
-        if(sessionStorage.userData){
+export async function viewDetailsPage(e) {
+    if (e.target.tagName === 'BUTTON') {
+        if (sessionStorage.userData) {
             userData = JSON.parse(sessionStorage.userData);
         }
 
@@ -20,11 +21,11 @@ export async function viewDetailsPage(e){
     }
 }
 
-async function getMovieDetails(id){
+async function getMovieDetails(id) {
     try {
-        const response = await fetch (`http://localhost:3030/data/movies/${id}`);
-        
-        if(response.ok !== true){
+        const response = await fetch(`http://localhost:3030/data/movies/${id}`);
+
+        if (response.ok !== true) {
             throw new Error('Bad request! Try again later!');
         }
 
@@ -35,7 +36,7 @@ async function getMovieDetails(id){
     }
 }
 
-function createMovieCard(movieData, userData){
+function createMovieCard(movieData, userData) {
     const div = document.createElement('div');
     div.className = 'container';
 
@@ -56,19 +57,51 @@ function createMovieCard(movieData, userData){
         </div>
         </div>
     `
-//       <span class="enrolled-span">Liked 1</span>
+    //       <span class="enrolled-span">Liked 1</span>
+
+    if (userData._id === movieData._ownerId) {
+        div.querySelector('.btn.btn-danger').addEventListener('click', onDelete)
+    } else {
+        
+    }
+
     return div;
 }
 
-function createBtns(movieData, userData){
+function createBtns(movieData, userData) {
     let result = '';
-    if(userData === ''){
+    if (userData === '') {
         return '';
-    } else if(userData._id === movieData._ownerId){
-        result = `<a class="btn btn-danger" href="#">Delete</a><a class="btn btn-warning" href="#">Edit</a>`;
+    } else if (userData._id === movieData._ownerId) {
+        result = `<a data-id = "${movieData._id}" class="btn btn-danger" href="#">Delete</a><a data-id = "${movieData._id}" class="btn btn-warning" href="#">Edit</a>`;
     } else {
         result = `<a class="btn btn-primary" href="#">Like</a>`;
     }
 
     return result;
+}
+
+async function onDelete(e){
+    e.preventDefault();
+    if (sessionStorage.userData) {
+        userData = JSON.parse(sessionStorage.userData);
+    }
+    const id = e.target.getAttribute('data-id');
+
+    try{
+        await fetch(`http://localhost:3030/data/movies/${id}`, {
+            method: 'delete',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Authorization': userData.accessToken
+            }
+        });
+
+        detailsPage.innerHTML = '';
+        detailsPage.style.display = 'none';
+        viewHomePage();       
+
+    } catch(err){
+        alert(err.message)
+    }
 }
