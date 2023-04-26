@@ -48,8 +48,7 @@ async function onEdit(e){
 
         e.target.reset();
         editPage.style.display = 'none';
-        const querySelectorDetails = `[data-id="${id}"]`;
-        homePage.querySelector(querySelectorDetails).click();
+        homePage.querySelector(`[data-id="${id}"]`).click();
 
 
     } catch (err) {
