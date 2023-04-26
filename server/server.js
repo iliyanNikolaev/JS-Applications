@@ -1599,6 +1599,32 @@
     			_id: "733fa9a1-26b6-490d-b299-21f120b2f53a"
     		}
     	},
+        autoparts: {
+            "cc9b0a0f-655d-45d7-9857-0a61c6bb2222": {
+    			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+    			"label": "Brake Disk",
+                "price": 49,
+                "qty": 5,
+    			_createdOn: 1616236790262,
+    			_updatedOn: 1616236792930
+    		},
+            "cc9b0a0f-655d-45d7-9857-0a61c6bb3333": {
+    			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+    			"label": "Side Mirror, Left",
+                "price": 49,
+                "qty": 5,
+    			_createdOn: 1616236790262,
+    			_updatedOn: 1616236792930
+    		},
+            "cc9b0a0f-655d-45d7-9857-0a61c6bb4444": {
+    			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+    			"label": "Wiper Fluid",
+                "price": 15,
+                "qty": 56,
+    			_createdOn: 1616236790262,
+    			_updatedOn: 1616236792930
+    		}
+        },
     	members: {
     		"cc9b0a0f-655d-45d7-9857-0a61c6bb2c4d": {
     			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
