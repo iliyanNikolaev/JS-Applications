@@ -33,10 +33,9 @@ export async function showCatalog(){
 function createRow(record){
     const element = document.createElement('tr');
     element.innerHTML = `
-    <td>${record._id}</td>
     <td>${record.label}</td>
-    <td>${record.price}</td>
-    <td>${record.qty}</td>
+    <td>€${record.price}</td>
+    <td><a href="javascript:void(0)" data-id="${record._id}">Details</a></td>
     `;
 
     return element;
