@@ -20,5 +20,7 @@ async function onLogin(e){
     const password = formData.get('password');
 
     await login(email, password);
+    form.reset();
+    ctx.updateNav();
     ctx.goto('/');
 }

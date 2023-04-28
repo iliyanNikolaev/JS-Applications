@@ -21,6 +21,7 @@ const router = initialize(links);
 
 //Start app in home view
 router.goto('/');
+router.updateNav();
 
 
 
