@@ -6,6 +6,12 @@ async function request(method, url, data) {
         headers: {}
     }
 
+    const user = JSON.parse(localStorage.getItem('user'));        
+
+    if(user != null){
+        options.headers['X-Authorization'] = user.accessToken;
+    }
+
     if(data != undefined){
         options.headers['Content-Type'] = 'application/json';
         options.body = JSON.stringify(data);
@@ -15,6 +21,9 @@ async function request(method, url, data) {
         const response = await fetch(host + url, options);
         
         if(response.ok != true){ // Aко response.ok НЕ е true, то сървъра е върнал нещо различно от "успех"
+            if(response.status = 403){
+                localStorage.removeItem('user'); //Invalid access token - пояснение най-долу
+            }
             const error = await response.json();
             throw new Error(error.message);
         }
@@ -39,3 +48,10 @@ export const get = request.bind(null, 'get');
 export const post = request.bind(null, 'post');
 export const put = request.bind(null, 'put');
 export const del = request.bind(null, 'delete');
+
+
+/*
+status 403 - Неоторизиран достъп, може да се случи ако сме запазили accessToken в localStorage и поради някаква причина
+рестартираме сървъра и токените се ресетнат, тогава на всяка заявка ще пращаме токена запазен в localStorage и
+поради това, че токена е експарнал сървъра ще ни връща 'Invalid access token' и приложението ще забие докато не се изчисти localStorage
+ */

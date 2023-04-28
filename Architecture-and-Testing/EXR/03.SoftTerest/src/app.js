@@ -1,2 +1,2 @@
-import * as api from './api/api.js';
-window.api = api;
+import * as users from './api/users.js';
+window.users = users;
