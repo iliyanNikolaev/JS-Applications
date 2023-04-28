@@ -1,22 +1,20 @@
+import { showCatalog } from "./views/catalog.js";
+import { showCreate } from "./views/create.js";
 import { showHome } from "./views/home.js";
+import { showLogin } from "./views/login.js";
+import { showRegister } from "./views/register.js";
 
 const main = document.querySelector('main');
-const registerPage = document.querySelector('#registerPage');
-const loginPage = document.querySelector('#loginPage');
-const detailsPage = document.querySelector('#detailsPage');
-const catalogPage = document.querySelector('#dashboard-holder');
-const createPage = document.querySelector('#createPage');
-const views = document.querySelector('#views');
-
-views.remove();
+document.querySelector('#views').remove();
+document.addEventListener('click', onNavigate);
 
 const links = {
     '/': showHome,
-    '/catalog': catalogPage,
-    '/login': loginPage,
+    '/catalog': showCatalog,
+    '/login': showLogin,
     '/details': detailsPage,
-    '/create': createPage,
-    '/register': registerPage
+    '/create': showCreate,
+    '/register': showRegister
 }
 
 function showPage(section){
@@ -27,7 +25,8 @@ const context = {
     showPage
 }
 
-window.showHome = () => {
-    showHome(context);
+function onNavigate(event){
+    
 }
+
 

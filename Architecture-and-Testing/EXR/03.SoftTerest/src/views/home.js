@@ -1,5 +1,5 @@
-const homePage = document.querySelector('#homePage');
+const section = document.querySelector('#homePage');
 
 export function showHome(context){
-    context.showPage(homePage);
+    context.showPage(section);
 }
