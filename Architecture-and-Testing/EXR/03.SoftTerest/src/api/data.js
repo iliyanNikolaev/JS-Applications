@@ -2,6 +2,7 @@ import * as api from './api.js';
 
 const endpoints = {
     ideas: '/data/ideas?select=_id%2Ctitle%2Cimg&sortBy=_createdOn%20desc',
+    details: '/data/ideas/',
     create: '/data/ideas',
 }
 
@@ -11,4 +12,8 @@ export async function getIdeas(){
 
 export async function createIdea(ideaData){
     return api.post(endpoints.create, ideaData);
+}
+
+export async function getById(id){
+    return api.get(endpoints.details + id);
 }

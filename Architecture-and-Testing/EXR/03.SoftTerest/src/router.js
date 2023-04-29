@@ -28,11 +28,11 @@ export function initialize(links){
         }
     }
     
-    function goto(link) {
+    function goto(link, ...params) {
         const viewer = links[link];
     
         if (typeof viewer == 'function') {
-            viewer(context);
+            viewer(context, ...params);
         }
     }
 
