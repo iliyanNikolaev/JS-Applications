@@ -5,6 +5,7 @@ import { showLogin } from "./views/login.js";
 import { showRegister } from "./views/register.js";
 import { showDetails } from "./views/details.js";
 import { initialize } from "./router.js";
+import { logout } from "./api/users.js"
 
 document.querySelector('#views').remove();
 
@@ -14,7 +15,8 @@ const links = {
     '/login': showLogin,
     '/details': showDetails,
     '/create': showCreate,
-    '/register': showRegister
+    '/register': showRegister,
+    '/logout': onLogout
 }
 
 const router = initialize(links);
@@ -24,5 +26,9 @@ router.goto('/');
 router.updateNav();
 
 
-
+async function onLogout(){
+    await logout();
+    router.updateNav();
+    router.goto('/');
+}
 
