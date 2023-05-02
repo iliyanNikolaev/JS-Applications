@@ -20,14 +20,10 @@ async function request(method, url, data) {
 
     try {
        const response = await fetch(host + url, options);
-       if (response.status == 204) {
-         const error = response.json(); // '204 - No content!'
-         throw new Error(error.message);
-      }
 
        if (response.ok != true) {
          
-        if(response.status == 403){ // invalid token
+        if(response.status == 403){ // invalid token -> this is happen when localStorage has old accessToken
             clearUserData();
          }
 
@@ -35,6 +31,10 @@ async function request(method, url, data) {
           throw new Error(error.message);
        }
        
+       if (response.status == 204) {
+         return response; // no-content -> this is happen when user logouts, if you attempt to parse it as JSON, you will receive an error!
+      }
+
        return response.json();
        
     } catch (err) {

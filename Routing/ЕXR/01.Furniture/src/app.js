@@ -5,6 +5,8 @@ import { detailsPage } from "./views/details.js";
 import { editPage } from "./views/edit.js";
 import { loginPage } from "./views/login.js";
 import { registerPage } from "./views/register.js";
+import * as data from "./api/data.js";
+import * as auth from "./api/auth.js"
 
 const root = document.querySelector('div.container');
 
@@ -24,3 +26,6 @@ function decorateContext(ctx, next){
 
     next();
 }
+
+window.data = data;
+window.auth = auth;
