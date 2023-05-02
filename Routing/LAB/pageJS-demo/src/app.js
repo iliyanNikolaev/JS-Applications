@@ -13,6 +13,7 @@ page('index.html', '/');
 page('/', homePage);
 page('/catalog', catalogPage);
 page('/catalog/:id', detailsPage);
+page('/catalog/:id/edit', () => console.log('TODO...'));
 page('/about', aboutPage);
 page('/login', loginPage);
 page('/register', registerPage);

@@ -1,8 +1,15 @@
-import { get } from "./api.js";
+import { del, get } from "./api.js";
 
-const endpoints = {
-    catalog: '/data/autoparts'
-}
+const catalogURL = '/data/autoparts';
+
 export async function getParts() {
-    return get(endpoints.catalog);
+    return get(catalogURL);
+}
+
+export async function getDetails(id){
+    return get(catalogURL + '/' + id);
+}
+
+export async function deletePart(id){
+    return del(catalogURL + '/' + id);
 }
