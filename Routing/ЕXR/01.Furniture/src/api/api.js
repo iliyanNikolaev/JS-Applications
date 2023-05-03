@@ -23,8 +23,8 @@ async function request(method, url, data) {
 
        if (response.ok != true) {
          
-        if(response.status == 403){ // invalid token -> this is happen when localStorage has old accessToken
-            clearUserData();
+        if(response.status == 403){ // invalid token/unauthorized access -> this is happen when localStorage has old accessToken
+            clearUserData();        // and when user input wrong email or pass
          }
 
           const error = await response.json();
@@ -38,7 +38,6 @@ async function request(method, url, data) {
        return response.json();
        
     } catch (err) {
-       alert(err.message);
        throw err;
     }
  }
