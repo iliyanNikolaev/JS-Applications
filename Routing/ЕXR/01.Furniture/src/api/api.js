@@ -32,8 +32,8 @@ async function request(method, url, data) {
        }
        
        if (response.status == 204) {
-         return response; // no-content -> this is happen when user logouts, if you attempt to parse it as JSON, you will receive an error!
-      }
+         return response; // no-content -> this is happen when the request is OK, but server not return data => logout for example, 
+      }                   //if you attempt to parse it as JSON, you will receive an error!
 
        return response.json();
        
