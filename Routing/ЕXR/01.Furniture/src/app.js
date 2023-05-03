@@ -9,6 +9,7 @@ import * as data from "./api/data.js";
 import * as auth from "./api/auth.js"
 
 const root = document.querySelector('div.container');
+document.querySelector('#logoutBtn').addEventListener('click', onLogout);
 
 page(decorateContext);
 page('/', catalogPage);
@@ -27,5 +28,8 @@ function decorateContext(ctx, next){
     next();
 }
 
-window.data = data;
-window.auth = auth;
+async function onLogout(){
+    auth.logout();
+
+    page.redirect('/');
+}
