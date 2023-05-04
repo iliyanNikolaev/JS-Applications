@@ -47,7 +47,10 @@ export async function detailsPage(ctx){
     ctx.render(detailsTemplate(details, isOwner, onDelete));
 
     async function onDelete(){
-        await deleteItem(id);
-        ctx.page.redirect('/');
+        const choice = confirm('Are ypu sure, you want to delete this item?');
+        if(choice){
+            await deleteItem(id);
+            ctx.page.redirect('/');
+        }
     }    
 }
