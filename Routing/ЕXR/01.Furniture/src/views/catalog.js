@@ -1,11 +1,12 @@
-import { getAllItems } from "../api/data.js";
+import { getAllItems, getMyItems } from "../api/data.js";
 import { html } from "../lib.js";
+import { getUserData } from "../util.js";
 
-const catalogTemplate = (items) => html`
+const catalogTemplate = (items, myFurniturePage) => html`
 <div class="row space-top">
             <div class="col-md-12">
-                <h1>Welcome to Furniture System</h1>
-                <p>Select furniture from the catalog to view details.</p>
+                <h1>${myFurniturePage ? html`My Furniture`: html`Welcome to Furniture System`}</h1>
+                <p>${myFurniturePage ? html`This is a list of your publications.`: html`Select furniture from the catalog to view details.`}</p>
             </div>
         </div>
         <div class="row space-top">
@@ -31,7 +32,17 @@ const itemTemplate = (item) => html`
 `
 
 export async function catalogPage(ctx) {
-    const items = await getAllItems();
+    const myFurniturePage = ctx.pathname == "/my-furniture";
     
-    ctx.render(catalogTemplate(items));
+    let items = [];
+
+    if(myFurniturePage){
+        const id = getUserData()._id;
+        
+        items = await getMyItems(id);
+    } else {
+        items = await getAllItems();
+    }
+    
+    ctx.render(catalogTemplate(items, myFurniturePage));
 }

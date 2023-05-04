@@ -53,6 +53,7 @@ export function registerPage(ctx){
             }   
 
             await register(email, password);
+            ctx.updateNav();
             ctx.page.redirect('/');
         } catch (error) {
             update(error.message);
