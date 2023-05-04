@@ -48,3 +48,5 @@ function updateNav(){
         document.querySelectorAll('.user').forEach(a => a.style.display = 'none');
     }
 }
+
+window.data = data;
