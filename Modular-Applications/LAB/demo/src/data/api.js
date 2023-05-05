@@ -19,10 +19,6 @@ async function request(method, url, data) {
 
     try {
        const response = await fetch(host + url, options);
-       if (response.status == 204) {
-         const error = response.json();
-         throw new Error('204 - No content!');
-      }
 
        if (response.ok != true) {
          if(response.status == 403){ // invalid token
@@ -32,6 +28,10 @@ async function request(method, url, data) {
           const error = await response.json();
           throw new Error(error.message);
        }
+
+       if (response.status == 204) {
+         return response;
+      }
        
        return response.json();
        

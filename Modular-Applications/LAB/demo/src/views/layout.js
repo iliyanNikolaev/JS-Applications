@@ -6,8 +6,10 @@ export const layoutTemplate = (user, content) => html`
             <a href="/">Home</a>
             <a href="/catalog">Catalog</a>
             <a href="/about">About</a>
-            ${user ? null : html`<a class="guest" href="/login">Login</a>
-            <a class="guest" href="/register">Register</a>`}
+            ${user 
+                ? html`<a class="guest" href="/logout">Logout</a>` 
+                : html`<a class="guest" href="/login">Login</a>
+                       <a class="guest" href="/register">Register</a>`}
         </nav>
         <main>
         ${content}

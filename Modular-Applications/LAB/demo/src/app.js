@@ -1,3 +1,4 @@
+import { logout } from './data/auth.js';
 import { addRenderToCtx } from './middlewares/render.js';
 import { addSessionToCtx } from './middlewares/session.js';
 import { aboutPage } from './views/about.js';
@@ -17,6 +18,11 @@ page('/catalog/:id/edit', () => console.log('TODO...'));
 page('/about', aboutPage);
 page('/login', loginPage);
 page('/register', registerPage);
+page('/logout', logoutFunc)
 
 page.start();
 
+function logoutFunc(){
+    logout();
+    page.redirect('/');
+}
