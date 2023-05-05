@@ -1,4 +1,4 @@
-import {html} from 'https://unpkg.com/lit-html?module';
+import { html } from 'https://unpkg.com/lit-html?module';
 import { createSubmitHandler } from '../utill.js';
 import { createPart } from '../data/data.js';
 
@@ -12,27 +12,36 @@ const createTemplate = (onSubmit) => html`
 </form>
 `;
 
-export function createPage(ctx){
+export function createPage(ctx) {
     ctx.render(createTemplate(createSubmitHandler(onSubmit)));
 
-    async function onSubmit(data, form){
-        try {
-            for (const entry in data) {
-                if(data[entry] == ''){
-                    throw new Error('Please fill all fields!')
-                }
+    async function onSubmit({label, price, qty}, form) {
+        
+        price = Number(price);
+        qty = Number(qty);
 
-                if(entry != 'label'){
-                    data[entry] = Number(data[entry]);
-                }
+        try {
+            if (label == '') {
+                throw new Error('Please fill all fields!')
             }
 
-            console.log(data)
-            await createPart(data);
+            if (price <= 0 || Number.isNaN(price)) {
+                throw new Error('Price must be a positive number!')
+            }
+
+            if (Number.isNaN(qty) || qty < 0 || Number.isInteger(qty) == false) {
+                throw new Error('Stock number must be a non-negative integer!')
+            }
+
+            await createPart({
+                label,
+                price,
+                qty
+            });
             form.reset();
-            ctx.page.redirect('/catalog'); 
+            ctx.page.redirect('/catalog');
         } catch (error) {
             alert(error.message);
-        } 
+        }
     }
 }
