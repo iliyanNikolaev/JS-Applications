@@ -2,8 +2,11 @@ import {html} from 'https://unpkg.com/lit-html?module';
 import { deletePart, getDetails } from '../data/data.js';
 import { getUserData } from '../utill.js';
 
-const detailsTemplate = (details, onDelete) => html`
+const detailsTemplate = (details, onDelete, isLoading) => html`
 <h1>Details</h1>
+${isLoading 
+? html`<p>Loading &hellip;</p>`
+: html`
 <p>S/N: ${details._id}</p>
 <p>Part Label: ${details.label}</p>
 <p>In stock: ${details.qty}</p>
@@ -13,9 +16,12 @@ ${details.canEdit
         <a href="/catalog/${details._id}/edit">Edit</a>
         <a href="javascript:void(0)" @click=${onDelete}>Delete</a>`
     : null}
+`}
 `;
 
-export async function detailsPage(ctx){  
+export async function detailsPage(ctx){
+    ctx.render(detailsTemplate(null, null, true));
+
     const id = ctx.params.id;
     const details = await getDetails(id);
     

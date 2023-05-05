@@ -2,13 +2,13 @@ import { html } from 'https://unpkg.com/lit-html?module';
 import { createSubmitHandler } from '../utill.js';
 import { createPart } from '../data/data.js';
 
-const createTemplate = (onSubmit) => html`
+const createTemplate = (onSubmit, isLoading) => html`
 <h1>Create part</h1>
 <form @submit=${onSubmit}>
 <label>Label: <input type="text" name="label"></label>
 <label>Price: <input type="number" name="price"></label>
 <label>In Stock: <input type="number" name="qty"></label>
-<button>Publish</button>
+${isLoading?html`<p>Loading &hellip;</p>`: html`<button>Publish</button>`}
 </form>
 `;
 
@@ -33,6 +33,7 @@ export function createPage(ctx) {
                 throw new Error('Stock number must be a non-negative integer!')
             }
 
+            ctx.render(createTemplate(createSubmitHandler(onSubmit), true));
             await createPart({
                 label,
                 price,
