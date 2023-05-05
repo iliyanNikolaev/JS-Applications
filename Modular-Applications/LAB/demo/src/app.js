@@ -3,6 +3,7 @@ import { addRenderToCtx } from './middlewares/render.js';
 import { addSessionToCtx } from './middlewares/session.js';
 import { aboutPage } from './views/about.js';
 import { catalogPage } from './views/catalog.js';
+import { createPage } from './views/create.js';
 import { detailsPage } from './views/details.js';
 import { homePage } from './views/home.js';
 import { loginPage } from './views/login.js';
@@ -16,9 +17,10 @@ page('/catalog', catalogPage);
 page('/catalog/:id', detailsPage);
 page('/catalog/:id/edit', () => console.log('TODO...'));
 page('/about', aboutPage);
+page('/create', createPage)
 page('/login', loginPage);
 page('/register', registerPage);
-page('/logout', logoutFunc)
+page('/logout', logoutFunc);
 
 page.start();
 

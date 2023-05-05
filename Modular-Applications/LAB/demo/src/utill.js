@@ -13,11 +13,12 @@ export function removeUserData(){
 export function createSubmitHandler(callback){
     return function(event){
         event.preventDefault();
+        
         const form = event.currentTarget;
         const formData = new FormData(form);
 
-        const data = Object.fromEntries(formData.entries());
-
+        const data = Object.fromEntries([...formData.entries()].map(([k, v]) => [k, v.trim()]));
+        
         return callback(data, form)
     }
 }
