@@ -16,7 +16,6 @@ export function loginPage(ctx){
 
     async function onLogin({ email, password }){
         await login(email, password);
-        ctx.updateNav();
         ctx.page.redirect('/');
     }
 }
