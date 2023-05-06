@@ -1,4 +1,4 @@
-import { del, get, post } from "./api.js";
+import { del, get, post, put } from "./api.js";
 
 const catalogURL = '/data/autoparts';
 
@@ -16,4 +16,13 @@ export async function deletePart(id){
 
 export async function createPart(data){
     return post(catalogURL, data);
+}
+
+export async function editPart(id, data){
+    return put(catalogURL + '/' + id, data);
+}
+
+window.api = {
+    getDetails,
+    editPart
 }

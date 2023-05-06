@@ -1,5 +1,5 @@
 import { html } from 'https://unpkg.com/lit-html?module';
-import { createSubmitHandler } from '../utill.js';
+import { createSubmitHandler, validatePartData } from '../utill.js';
 import { createPart } from '../data/data.js';
 
 const createTemplate = (onSubmit, isLoading) => html`
@@ -15,30 +15,13 @@ ${isLoading?html`<p>Loading &hellip;</p>`: html`<button>Publish</button>`}
 export function createPage(ctx) {
     ctx.render(createTemplate(createSubmitHandler(onSubmit)));
 
-    async function onSubmit({label, price, qty}, form) {
-        
-        price = Number(price);
-        qty = Number(qty);
-
+    async function onSubmit(data, form) {
         try {
-            if (label == '') {
-                throw new Error('Please fill all fields!')
-            }
-
-            if (price <= 0 || Number.isNaN(price)) {
-                throw new Error('Price must be a positive number!')
-            }
-
-            if (Number.isNaN(qty) || qty < 0 || Number.isInteger(qty) == false) {
-                throw new Error('Stock number must be a non-negative integer!')
-            }
+            console.log(data)
+            const validatedData = validatePartData(data);
 
             ctx.render(createTemplate(createSubmitHandler(onSubmit), true));
-            await createPart({
-                label,
-                price,
-                qty
-            });
+            await createPart(validatedData);
             form.reset();
             ctx.page.redirect('/catalog');
         } catch (error) {
