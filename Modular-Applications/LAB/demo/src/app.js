@@ -1,4 +1,5 @@
 import { logout } from './data/auth.js';
+import { addQueryToCtx } from './middlewares/query.js';
 import { addRenderToCtx } from './middlewares/render.js';
 import { addSessionToCtx } from './middlewares/session.js';
 import { aboutPage } from './views/about.js';
@@ -11,6 +12,7 @@ import { loginPage } from './views/login.js';
 import { registerPage } from './views/register.js';
 
 page(addSessionToCtx);
+page(addQueryToCtx);
 page(addRenderToCtx);
 page('index.html', '/');
 page('/', homePage);

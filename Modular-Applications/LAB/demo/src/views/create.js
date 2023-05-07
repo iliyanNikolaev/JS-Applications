@@ -17,7 +17,6 @@ export function createPage(ctx) {
 
     async function onSubmit(data, form) {
         try {
-            console.log(data)
             const validatedData = validatePartData(data);
 
             ctx.render(createTemplate(createSubmitHandler(onSubmit), true));
