@@ -7,6 +7,12 @@ const endpoints = {
     byId: '/data/autoparts/'
 }
 
+export async function search(query){
+    const searchParam = `label LIKE "${query}"`;
+
+    return get(endpoints.allParts + `?where=${encodeURIComponent(searchParam)}`);
+}
+
 export async function getParts(page = 1) {
     const offset = (page - 1) * pageSize;
 
