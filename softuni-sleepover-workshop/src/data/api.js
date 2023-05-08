@@ -1,6 +1,7 @@
 import { getUserData } from "../util.js";
 
 const host = 'https://parseapi.back4app.com';
+
 const applicationId = '5pxuukklCveHW67o6JkWQHeTWHYQXxLQEgLHLDzQ';
 const apiId = '3L7lEIBfIAuuoJhJLDBrAFp4KL6KMcrJQvfSSvkB';
 

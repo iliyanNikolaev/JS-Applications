@@ -10,8 +10,8 @@ export async function getAllRooms(){
     return get(endpoints.all);
 }
 
-export async function getRoomById(id){
-    return get(endpoints.byId + id);
+export async function getRoomById(roomId){
+    return get(endpoints.byId + roomId);
 }
 
 export async function createRoom(roomData, userId){
@@ -28,6 +28,6 @@ export async function editRoom(roomId, roomData, userId){
     return put(endpoints.byId + roomId, data);
 }
 
-export async function deleteRoom(id){
-    return del(endpoints.byId + id);
+export async function deleteRoom(roomId){
+    return del(endpoints.byId + roomId);
 }

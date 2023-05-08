@@ -11,18 +11,18 @@ export async function register(email, username, password) {
         username
     }
 
-    setUserData(data);
+    setUserData(userData);
 }
 
 
 export async function login(username, password) {
-    const response = await post('/login', { username, password });
+    const { objectId, sessionToken, email } = await post('/login', { username, password });
 
     const userData = {
-        sessionToken: response.sessionToken,
-        objectId: response.objectId,
-        email: response.email,
-        username: response.username
+        email,
+        objectId,
+        sessionToken,
+        username
     }
 
     setUserData(userData);

@@ -23,9 +23,9 @@ export function createPage(ctx) {
             return alert('All fields are required!');
         }
 
-        const id = ctx.user?.objectId;
+        const userId = ctx.user?.objectId;
 
-        const result = await createRoom({ name, beds, location }, id);
+        const result = await createRoom({ name, beds, location }, userId);
 
         ctx.page.redirect('/rooms/' + result.objectId);
     }
