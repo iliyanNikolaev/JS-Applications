@@ -1,0 +1,19 @@
+body{
+    width: 900px;
+    background-color: antiquewhite;
+}
+
+.room-card{
+    float: left;
+    width: 230px;
+    border-radius: 16px;
+    box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.2);
+    margin: 24px;
+    background-color: white;
+    padding: 12px;
+}
+
+label{
+    display: block;
+    margin: 3px;
+}

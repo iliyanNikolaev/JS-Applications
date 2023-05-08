@@ -6,6 +6,8 @@ import { createPage } from './views/create.js';
 import * as users from './data/users.js';// for debug
 import * as data from './data/data.js'; // for debug
 import { catalogPage } from './views/catalog.js';
+import { loginPage } from './views/login.js';
+import { registerPage } from './views/register.js';
 
 page(addRenderToCtx(document.querySelector('main')));
 
@@ -15,6 +17,8 @@ page('/', '/rooms');
 page('/rooms', catalogPage);
 page('/rooms/:id', ({params: { id }}) => console.log('details', id));
 page('/create', createPage);
+page('/login', loginPage);
+page('/register', registerPage)
 
 page.start();
 

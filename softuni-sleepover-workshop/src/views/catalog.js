@@ -13,7 +13,7 @@ const listTemplate = (rooms) => html`
 `
 
 const roomCard = (room) => html`
-<article>
+<article class="room-card">
 <h3>${room.name}</h3>
 <p>Location: ${room.location}</p>
 <p>Beds: ${room.beds}</p>
