@@ -11,7 +11,7 @@ page(addRenderToCtx(document.querySelector('main')));
 
 page(addSessionToCtx(getUserData));
 
-page('/', '/create');
+page('/', '/rooms');
 page('/rooms', catalogPage);
 page('/rooms/:id', ({params: { id }}) => console.log('details', id));
 page('/create', createPage);
