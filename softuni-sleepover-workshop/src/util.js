@@ -30,6 +30,10 @@ export function submitHandler(callback){
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
 
-        return callback(data);
+        for (const key in data) {
+            data[key] = data[key].trim();
+        }
+
+        return callback(data, e.target);
     }
 }
