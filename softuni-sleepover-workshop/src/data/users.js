@@ -1,4 +1,4 @@
-import { setUserData } from "../util.js";
+import { clearUserData, setUserData } from "../util.js";
 import { post } from "./api.js";
 
 export async function register(email, username, password) {
@@ -27,7 +27,6 @@ export async function login(username, password) {
 
     setUserData(userData);
 }
-
 
 
 

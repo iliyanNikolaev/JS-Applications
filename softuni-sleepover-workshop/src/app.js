@@ -7,11 +7,12 @@ import { catalogPage } from './views/catalog.js';
 import { loginPage } from './views/login.js';
 import { registerPage } from './views/register.js';
 import { renderNav } from './middlewares/nav.js';
+import { homePage } from './views/home.js';
 
 page(addRenderToCtx(document.querySelector('main')));
 page(addSessionToCtx(getUserData));
 page(renderNav);
-page('/', '/rooms');
+page('/', homePage);
 page('/rooms', catalogPage);
 page('/rooms/:id', ({params: { id }}) => console.log('details', id));
 page('/create', createPage);
