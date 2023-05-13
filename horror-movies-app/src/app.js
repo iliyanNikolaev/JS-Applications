@@ -6,8 +6,8 @@ import { homePage } from "./views/home.js";
 import { loginPage } from "./views/login.js";
 import { registerPage } from "./views/register.js";
 import { logout } from "./data/users.js";
-
-// TODO change render root depending on project HTML structure
+import * as movies from "./data/movies.js";
+import { detailsPage } from "./views/details.js";
 
 const root = document.body;
 
@@ -17,6 +17,7 @@ page('/', homePage);
 page('/login', loginPage);
 page('/register', registerPage);
 page('/logout', onLogout);
+page('/details/:id', detailsPage);
 
 
 page.start();
@@ -26,7 +27,6 @@ function decorateContext(ctx, next){
     next();
 }
 
-// TODO inject dependencies
 function renderView(content){
     const userData = getUserData();
 

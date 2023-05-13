@@ -1487,31 +1487,36 @@
                 "_id": "01",
                 "title": "The Conjuring",
                 "description": "Paranormal investigators Ed and Lorraine Warren work to help a family terrorized by a dark presence in their farmhouse.",
-                "img": "https://www.imdb.com/title/tt1457767/mediaviewer/rm1035247872/?ref_=tt_ov_i"
+                "img": "https://m.media-amazon.com/images/M/MV5BMTM3NjA1NDMyMV5BMl5BanBnXkFtZTcwMDQzNDMzOQ@@._V1_FMjpg_UX1000_.jpg",
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
             },
             "02": {
                 "_id": "02",
                 "title": "Evil Dead Rise",
                 "description": "A twisted tale of two estranged sisters whose reunion is cut short by the rise of flesh-possessing demons, thrusting them into a primal battle for survival as they face the most nightmarish version of family imaginable.",
-                "img": "https://www.imdb.com/title/tt13345606/mediaviewer/rm1828666369/?ref_=tt_ov_i"
+                "img": "https://m.media-amazon.com/images/M/MV5BMmZiN2VmMjktZDE5OC00ZWRmLWFlMmEtYWViMTY4NjM3ZmNkXkEyXkFqcGdeQXVyMTI2MTc2ODM3._V1_.jpg",
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8"
             },
             "03": {
                 "_id": "03",
                 "title": "The Pope's Exorcist",
                 "description": "Follow Gabriele Amorth, the Vatican's leading exorcist, as he investigates the possession of a child and uncovers a conspiracy the Vatican has tried to keep secret.",
-                "img": "https://www.imdb.com/title/tt13375076/mediaviewer/rm1894790913/?ref_=tt_ov_i"
+                "img": "https://upload.wikimedia.org/wikipedia/en/thumb/b/bd/ThePopesExorcistPoster.png/220px-ThePopesExorcistPoster.png",
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8"
             },
             "04": {
                 "_id": "04",
-                "title": "1408",
-                "description": "A man who specialises in debunking paranormal occurrences checks into the fabled room 1408 in the Dolphin Hotel. Soon after settling in, he confronts genuine terror.",
-                "img": "https://www.imdb.com/title/tt0450385/mediaviewer/rm1798258176/?ref_=tt_ov_i"
+                "title": "Annabelle",
+                "description": "A couple begins to experience terrifying supernatural occurrences involving a vintage doll shortly after their home is invaded by satanic cultists.",
+                "img": "https://upload.wikimedia.org/wikipedia/en/9/90/Annabelle_film_poster.jpg",
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a"
             },
             "05": {
                 "_id": "05",
                 "title": "The Bye Bye Man",
                 "description": "Three friends stumble upon the horrific origins of a mysterious figure they discover is the root cause of the evil behind unspeakable acts.",
-                "img": "https://www.imdb.com/title/tt4030600/mediaviewer/rm3380681728/?ref_=tt_ov_i"
+                "img": "https://m.media-amazon.com/images/M/MV5BMTcxOTE5NzQwNF5BMl5BanBnXkFtZTgwOTMzMTc1ODE@._V1_.jpg",
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a"
             }
         },
         likes: {
