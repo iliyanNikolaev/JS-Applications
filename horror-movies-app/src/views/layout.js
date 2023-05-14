@@ -29,5 +29,9 @@ export const layoutTemplate = (userData, content) => html`
 </nav>
 <main>
 ${html`${content}`}
-</main>`;
+</main>
+<footer class="foot">
+© SoftUni 2023, JS-Applications
+</footer>
+`;
 
