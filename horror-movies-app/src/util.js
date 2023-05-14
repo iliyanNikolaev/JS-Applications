@@ -19,6 +19,10 @@ export function submitHandler(callback){
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
 
+        for (const entry in data) {
+            data[entry] = data[entry].trim();
+        }
+        
         return callback(data, e.target);
     }
 }

@@ -18,7 +18,7 @@ export async function deleteMovie(id){
 }
 
 export async function createMovie(data){
-    return post(endpoints.all, data);
+    return post(endpoints.byId, data);
 }
 
 export async function editMovie(id, data){

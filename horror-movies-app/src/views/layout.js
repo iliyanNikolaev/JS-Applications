@@ -1,6 +1,4 @@
-import {html} from '../../node_modules/lit-html/lit-html.js'
-
-// TODO Replace with actual navigation
+import { html } from '../../node_modules/lit-html/lit-html.js'
 
 export const layoutTemplate = (userData, content) => html`
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -13,8 +11,12 @@ export const layoutTemplate = (userData, content) => html`
         </li>
         ${userData ? html`
         <li class="nav-item">
+            <a class="nav-link" href="/create">Create Movie</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="/logout">Logout</a>
-        </li>` : html`
+        </li>
+        ` : html`
         <li class="nav-item">
             <a class="nav-link" href="/login">Login</a>
         </li>

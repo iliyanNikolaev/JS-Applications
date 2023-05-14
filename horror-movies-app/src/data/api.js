@@ -29,7 +29,7 @@ async function request(method, url, data){
         }
 
         if(response.ok != true){
-            if(response.status == 403){ // 403 - Unauthorized access
+            if(response.status == 403){ 
                 clearUserData();
             }
             const error = result;

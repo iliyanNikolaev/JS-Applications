@@ -2,7 +2,8 @@ import {html} from '../../node_modules/lit-html/lit-html.js'
 import { getAllMovies } from '../data/movies.js';
 
 const homeTemplate = (movies) => html`
-<h2>Movies</h2>
+<h2>Catalog</h2>
+<p>Watch the movies at your own responsibility, not suitable for people with weak hearts.</p>
 <div class="movie-list">
 ${movies.map(x => movieCard(x))}
 </div>
@@ -17,7 +18,6 @@ const movieCard = (movie) => html`
   </div>
 </div>`
 
-// TODO Replace with actual view
 export async function homePage(ctx){
     const movies = await getAllMovies();
     ctx.render(homeTemplate(movies));
