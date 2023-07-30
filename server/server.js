@@ -1517,6 +1517,13 @@
                 "description": "Three friends stumble upon the horrific origins of a mysterious figure they discover is the root cause of the evil behind unspeakable acts.",
                 "img": "https://m.media-amazon.com/images/M/MV5BMTcxOTE5NzQwNF5BMl5BanBnXkFtZTgwOTMzMTc1ODE@._V1_.jpg",
                 _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a"
+            },
+            "06": {
+                "_id": "06",
+                "title": "The Nun",
+                "description": "A priest with a haunted past and a novice on the threshold of her final vows are sent by the Vatican to investigate the death of a young nun in Romania and confront a malevolent force in the form of a demonic nun.",
+                "img": "hhttps://m.media-amazon.com/images/M/MV5BMjM3NzQ5NDcxOF5BMl5BanBnXkFtZTgwNzM4MTQ5NTM@._V1_FMjpg_UX1000_.jpg",
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a"
             }
         },
         likes: {
