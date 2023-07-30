@@ -1,6 +1,9 @@
 # SoftUni-JS-Applications
+<div id="icons">
 <img width="100" alt="softuniLogo" src="https://user-images.githubusercontent.com/121745595/219448556-2c7c7f5a-c282-411b-9253-1b55fff353d7.png">
-
+<img width="100" alt="jsLogo" src="https://d2vqpl3tx84ay5.cloudfront.net/500x/tumblr_lsus01g1ik1qies3uo1_400.png">
+</div>
+<hr>
 
 In the "JS Applications" course, students will learn about HTTP requests and how to use them. They will be introduced to REST services, what a BaaS (backend as a service) is and how to work with it, what asynchronous code means (promises, using async/await), and what templating and routing are. During the course, they will create a single page application using the techniques learned in previous lectures, which will be evaluated. They will understand the architecture of an application and how to properly structure their own applications. Towards the end of the course, they will explore different design patterns and their practical direction, create their own web components using the Web Components standard, and set up a Webpack environment from scratch.
 
