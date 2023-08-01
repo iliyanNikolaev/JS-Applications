@@ -8,5 +8,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "lit-html": "^2.7.5",
+    "page": "^1.11.6"
+  }
 }
