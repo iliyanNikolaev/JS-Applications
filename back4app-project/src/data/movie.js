@@ -1,4 +1,4 @@
-import { get, post, put } from "./api.js";
+import { get, post, put, del } from "./api.js";
 import { createPointer } from "../util.js";
 
 const endpoints = {
@@ -30,9 +30,11 @@ export async function editMovie(movieId, movieData, userId) {
         owner: createPointer(userId)
     }
 
-    return put(endpoints.byId + movieId, movieData);
+    return put(endpoints.byId + movieId, movieData); // {updatedAt: '...'}
 }
 
 export async function deleteMovie(movieId) {
     return del(endpoints.byId);
 }
+
+//https://parseapi.back4app.com/classes/Movies/?where={"title": "Evil Dead Rise"}    >>> req with query params this will returns Evil Dead Rice movie...
