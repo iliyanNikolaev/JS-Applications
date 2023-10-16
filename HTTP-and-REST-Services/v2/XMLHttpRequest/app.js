@@ -7,7 +7,9 @@ function loadLaptops() {
     const req = new XMLHttpRequest();
 
     req.addEventListener('readystatechange', () => {
-        document.querySelector('#response').textContent = req.responseText;
+        if(req.readyState == 4 && req.status == 200) {
+            document.querySelector('#response').textContent = req.responseText;
+        }
     });
 
     req.open('GET', url);
