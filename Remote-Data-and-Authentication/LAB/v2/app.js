@@ -11,11 +11,11 @@ const inputElements = {
     price: document.querySelector('#price'),
 }
 
-//attach events
+// attach events
 postBtn.addEventListener('click', postHandler);
 tbody.addEventListener('click', handleClickOnTable);
 
-
+// start app
 async function onLoad() {
     await rednerGPUs();
 }
@@ -105,6 +105,7 @@ async function postHandler() {
 async function editHandler(itemId) {
     try {
         const currentRow = tbody.querySelector(`#${itemId}`).parentElement.parentElement;
+        currentRow.className = 'edit-form-row';
         const currentItem = await getGPUById(itemId);
         if (currentItem.error) {
             throw new Error(currentItem.error);
@@ -118,19 +119,19 @@ async function editHandler(itemId) {
         <button id='save-btn'>Save</button>
         </th>`;
 
-        currentRow.querySelector('#save-btn').addEventListener('click', () => saveEdited(itemId));
+        currentRow.querySelector('#save-btn').addEventListener('click', () => saveEdited(itemId, currentRow));
     } catch (err) {
         return alert(err.message);
     }
 }
 
-async function saveEdited(id) {
+async function saveEdited(id, currentRow) {
     try {
         const editInputElements = {
-            brand: document.querySelector('#brand-edit-'+id),
-            model: document.querySelector('#model-edit-'+id),
-            vram: document.querySelector('#vram-edit-'+id),
-            price: document.querySelector('#price-edit-'+id),
+            brand: document.querySelector('#brand-edit-' + id),
+            model: document.querySelector('#model-edit-' + id),
+            vram: document.querySelector('#vram-edit-' + id),
+            price: document.querySelector('#price-edit-' + id),
         }
 
         const data = {
@@ -148,10 +149,11 @@ async function saveEdited(id) {
         }
 
         const edited = await editGPUById(id, data);
-        if(edited.error) {
+        if (edited.error) {
             throw new Error(edited.error);
         }
         rednerGPUs();
+        currentRow.className = '';
     } catch (err) {
         return alert(err.message);
     }
@@ -160,9 +162,9 @@ async function saveEdited(id) {
 async function deleteHandler(itemId) {
     try {
         const choice = confirm('Are you sure you want to delete this item?');
-        if(choice) {
+        if (choice) {
             const deleted = await deleteGPUById(itemId);
-            if(deleted.error) {
+            if (deleted.error) {
                 throw new Error(deleted.error);
             }
             rednerGPUs();

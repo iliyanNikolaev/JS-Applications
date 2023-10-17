@@ -1,5 +1,4 @@
 body{
-    padding: 48px;
     background-color: lightgray;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -16,13 +15,45 @@ body{
 }
 
 table{
-    background-color: grey;
     padding: 12px;
+    border-collapse: collapse;
+    font-size: 0.9em;
 }
 
+table thead th{
+    background-color: #008678;
+    color: white;
+    font-weight: bold;
+    padding: 2px 6px;
+}
+
+table tbody tr {
+    border-bottom: 2px solid white;
+    padding: 2px;
+}
+
+table tbody th{
+    padding: 2px 6px;
+}
 
 .inputs{
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+
+button{
+    background-color: #008678;
+    color: white;
+    border: none;
+}
+
+@media (max-width: 400px) {
+    .edit-form-row {
+        display: flex;
+        flex-direction: column;
+    }
+    button{
+        margin-top: 10px;
+    }
 }
