@@ -110,20 +110,66 @@ async function editHandler(itemId) {
             throw new Error(currentItem.error);
         }
         currentRow.innerHTML = `
-        <th><input type="text" id="brand-edit" value="${currentItem.brand}"></th>
-        <th><input type="text" id="model-edit" value="${currentItem.model}"></th>
-        <th><input type="number" id="vram-edit" value="${currentItem.vram}"></th>
-        <th><input type="number" id="price-edit" value="${currentItem.price}"></th>
+        <th><input type="text" id="brand-edit-${itemId}" value="${currentItem.brand}"></th>
+        <th><input type="text" id="model-edit-${itemId}" value="${currentItem.model}"></th>
+        <th><input type="number" id="vram-edit-${itemId}" value="${currentItem.vram}"></th>
+        <th><input type="number" id="price-edit-${itemId}" value="${currentItem.price}"></th>
         <th>
-        <button>Save</button>
-        </th>`
+        <button id='save-btn'>Save</button>
+        </th>`;
+
+        currentRow.querySelector('#save-btn').addEventListener('click', () => saveEdited(itemId));
+    } catch (err) {
+        return alert(err.message);
+    }
+}
+
+async function saveEdited(id) {
+    try {
+        const editInputElements = {
+            brand: document.querySelector('#brand-edit-'+id),
+            model: document.querySelector('#model-edit-'+id),
+            vram: document.querySelector('#vram-edit-'+id),
+            price: document.querySelector('#price-edit-'+id),
+        }
+
+        const data = {
+            brand: editInputElements.brand.value,
+            model: editInputElements.model.value,
+            vram: Number(editInputElements.vram.value),
+            price: Number(editInputElements.price.value)
+        }
+        //validate data
+        if (data.brand == ''
+            || data.model == ''
+            || data.vram == '' || Number.isNaN(data.vram)
+            || data.price == '' || Number.isNaN(data.price)) {
+            return alert('invalid data');
+        }
+
+        const edited = await editGPUById(id, data);
+        if(edited.error) {
+            throw new Error(edited.error);
+        }
+        rednerGPUs();
     } catch (err) {
         return alert(err.message);
     }
 }
 
 async function deleteHandler(itemId) {
-
+    try {
+        const choice = confirm('Are you sure you want to delete this item?');
+        if(choice) {
+            const deleted = await deleteGPUById(itemId);
+            if(deleted.error) {
+                throw new Error(deleted.error);
+            }
+            rednerGPUs();
+        }
+    } catch (err) {
+        return alert(err.message);
+    }
 }
 
 // api functions
@@ -162,4 +208,29 @@ async function getGPUById(id) {
     });
     const data = await res.json();
     return data;
+}
+
+async function editGPUById(id, data) {
+    const res = await fetch(host + '/classes/GPUs/' + id, {
+        method: 'put',
+        headers: {
+            'X-Parse-Application-Id': appKey,
+            'X-Parse-JavaScript-Key': jsKey
+        },
+        body: JSON.stringify(data)
+    });
+    const edited = await res.json();
+    return edited;
+}
+
+async function deleteGPUById(id) {
+    const res = await fetch(host + '/classes/GPUs/' + id, {
+        method: 'delete',
+        headers: {
+            'X-Parse-Application-Id': appKey,
+            'X-Parse-JavaScript-Key': jsKey
+        }
+    });
+    const deleted = await res.json();
+    return deleted;
 }
