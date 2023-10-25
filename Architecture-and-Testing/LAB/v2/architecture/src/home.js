@@ -1,12 +1,14 @@
+import { getUserData } from "./api/request.js";
+
 const homeView = document.querySelector('#home-view');
 const root = document.querySelector('#root');
 const congratsEl = document.querySelector('#congrats');
 
 export function showHome() {
-    const userEmail = localStorage.getItem('email');
+    const userData = getUserData();
 
-    userEmail 
-        ? congratsEl.textContent = `user logged in app => ${userEmail}`
+    userData 
+        ? congratsEl.textContent = `user logged in app => ${userData.email}`
         : congratsEl.textContent = 'user logged in app => guest'
     
     root.replaceChildren(homeView);

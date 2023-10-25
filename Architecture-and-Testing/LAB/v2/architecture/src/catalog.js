@@ -1,5 +1,5 @@
 import { showDetails } from './details.js'
-import { getData } from './api.js';
+import { getLaptops } from './api/data.js';
 const catalogView = document.querySelector('#catalog-view');
 const root = document.querySelector('#root');
 const loading = document.createElement('p');
@@ -9,7 +9,7 @@ const table = document.querySelector('#table');
 export async function showCatalog() {
     root.replaceChildren(catalogView);
     table.replaceChildren(loading);
-    const parts = await getData('http://localhost:3030/data/laptops');
+    const parts = await getLaptops();
     table.replaceChildren(...parts.map(createTableRow));
 }
 

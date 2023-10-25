@@ -13,7 +13,7 @@ document.querySelector('#navigation').addEventListener('click', router);
 
 function router(e) {
     const targetEl = e.target;
-    if(targetEl.tagName == 'A'){
+    if (targetEl.tagName == 'A') {
         const page = targetEl.id;
         showView(page);
     }
@@ -22,9 +22,9 @@ function router(e) {
 function showView(page) {
     const renderFn = views[page];
 
-        if(typeof renderFn == 'function'){
-            renderFn(showView);
-        }
+    if (typeof renderFn == 'function') {
+        renderFn(showView);
+    }
 }
 
 
