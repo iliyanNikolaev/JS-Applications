@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event loop</title>
+</head>
+<body>
+    <button>wait</button>
+    <button>1</button>
+    <button>2</button>
+    <button>performance demo</button>
+    <script>
+        const [btnWait, btn1, btn2, perfBtn] = document.querySelectorAll('button');
+
+        btnWait.addEventListener('click', () => waitSync(5000));
+        btn1.addEventListener('click', () => console.log('1 click'));
+        btn2.addEventListener('click', () => console.log('2 click'));
+        perfBtn.addEventListener('click', () => performanceDemo(3000000000));
+
+        function waitSync(time){
+            let counter = 0;
+            const start = performance.now();
+
+            while (performance.now() - start < time) {
+                counter++;
+            }
+
+            console.log('function over, counter is => ', counter);
+        }
+
+        function performanceDemo(iterations) {
+            const start = performance.now();
+
+            for(let i = 0; i < iterations; i++) {}
+
+            const end = performance.now();
+
+            const time = end - start;
+
+            console.log(`the time in which the CPU executes ${iterations} iterations is ${(time / 1000).toFixed(1)} seconds`);
+        }
+    </script>
+</body>
+</html>
